@@ -8,7 +8,7 @@ form.addEventListener("submit", function (event) {
     if (itemName.value !== "" && itemqty.value !== "") {
         const tr = document.createElement("tr")
         const rand = Math.floor((Math.random() * 1000) + 1)
-        tr.setAttribute("id",`${rand}`)
+        tr.setAttribute("id", `${rand}`)
         tr.innerHTML = ` 
         <td>${rand}</td>
         <td>${itemName.value}</td>
@@ -17,21 +17,39 @@ form.addEventListener("submit", function (event) {
         <td> <button class="btn btn-danger">Delete</button> </td>
         `
         list.appendChild(tr)
-        itemName.value =""
-        itemqty.value =" "
+        itemName.value = ""
+        itemqty.value = " "
         alertBox.classList.add('alert-success')
-        alertBox.innerHTML ="Item Added Successfully !";
-        setTimeout(()=>{
+        alertBox.innerHTML = "Item Added Successfully !";
+        setTimeout(() => {
             alertBox.classList.remove("alert-success")
-            alertBox.innerHTML =""
-        },3000)
-    }else{
+            alertBox.innerHTML = ""
+        }, 3000)
+    } else {
         alertBox.classList.add("alert-danger")
-        alertBox.innerHTML="Please Add Items !"
-        setTimeout(()=>{
+        alertBox.innerHTML = "Please Add An Item !"
+        setTimeout(() => {
             alertBox.classList.remove("alert-danger")
-            alertBox.innerHTML =""
-        },3000)
+            alertBox.innerHTML = ""
+        }, 3000)
     }
 
+})
+
+
+
+list.addEventListener("click", function (e) {
+
+    if (e.target.classList.contains("btn")) {
+
+        e.target.parentElement.parentElement.remove()
+
+        alertBox.classList.add("alert-danger")
+        alertBox.innerHTML ="Item Deleted !"
+        setTimeout(() => {
+            alertBox.classList.remove("alert-danger")
+            alertBox.innerHTML =""
+        }, 3000);
+
+    }
 })
